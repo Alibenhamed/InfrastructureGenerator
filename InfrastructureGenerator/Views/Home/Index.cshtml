@@ -7,33 +7,624 @@
 <h2>Generate Terraform Script TREND-IT</h2>
 
 <form method="post">
-    <div class="form-group">
-        <label for="param1">Nom de la machine virtuelle :</label>
-        <input type="text" class="form-control" id="param1" name="Param1" value="@Model?.Param1">
-    </div>
-    <div class="form-group">
-        <label for="param2">Région :</label>
-        <input type="text" class="form-control" id="param2" name="Param2" value="@Model?.Param2">
-    </div>
-    <div class="form-group">
-        <label for="param3">Network Name:</label>
-        <input type="text" class="form-control" id="param3" name="Param3" value="@Model?.Param3">
-    </div>
-    <div class="form-group">
-        <label for="param4">Address Space:</label>
-        <input type="text" class="form-control" id="param4" name="Param4" value="@Model?.Param4">
-    </div>
-    <div class="form-group">
-        <label for="param5">Network Location:</label>
-        <input type="text" class="form-control" id="param5" name="Param5" value="@Model?.Param5">
-    </div>
-    <div class="form-group">
-        <label for="param6">Resource group name:</label>
-        <input type="text" class="form-control" id="param6" name="Param6" value="@Model?.Param6">
-    </div>
-    <button type="submit" class="btn btn-primary">Generate Script</button>
-</form>
 
+    @{
+        ViewData["Title"] = "Generate Terraform Script";
+    }
+
+    <div class="form-group">
+        <label for="component">Sélectionnez le composant :</label>
+        <select class="form-control" id="component" name="Component">
+            <option value="AzureVirtualMachine">Azure Virtual Machine</option>
+            <option value="AzureSQLDatabase">Azure SQL Database</option>
+            <option value="AppService">App Service</option>
+            <option value="DNSZone">DNS Zone</option>
+            <option value="AzureCosmosDB">Azure Cosmos DB</option>
+            <option value="AzureKubernetesService">Azure Kubernetes Service</option>
+            <option value="AzureContentDelivery Network">Azure Content Delivery Network</option>
+            <option value="AzureActiveDirectory">Azure Active Directory Domain Service</option>
+            <option value="AzureAPIManagement">Azure API Management</option>
+            <option value="AzureFunctions">Azure Functions</option>
+            <option value="AzureLogicApps">Azure Logic Apps</option>
+            <option value="AzureDevOps">Azure DevOps</option>
+
+
+
+
+        </select>
+    </div>
+
+    <div id="componentForm">
+        <!-- Ce div sera rempli avec le formulaire correspondant au composant sélectionné -->
+    </div>
+
+    <script>
+        // Fonction pour changer le formulaire en fonction du composant sélectionné
+        document.getElementById("component").addEventListener("change", function () {
+            var selectedComponent = this.value;
+            var formHtml = "";
+
+            switch (selectedComponent) {
+                case "AzureVirtualMachine":
+                    formHtml = `
+                        <form method="post">
+                            <div class="form-group">
+                            <h2>Configurez <span style="color: red;">Azure Virtual Machine</span> en fournissant les informations nécessaires dans les champs suivants</h2>
+
+                                                <div class="form-group">
+                                            <label for="param1">Nom Ressource Groupe :</label>
+                                            <input type="text" class="form-control" id="param1" name="Param1" value="@Model?.Param1">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="param2">Région :</label>
+                                            <input type="text" class="form-control" id="param2" name="Param2" value="@Model?.Param2">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="param3">Nom de Réseau Virtuel:</label>
+                                            <input type="text" class="form-control" id="param3" name="Param3" value="@Model?.Param3">
+                                        </div>
+                                        <div class="form-group">
+                                                    <label for="param4">Adreese Space:</label>
+                                            <input type="text" class="form-control" id="param4" name="Param4" value="@Model?.Param4">
+                                        </div>
+                                        <div class="form-group">
+                                                    <label for="param5">Environnement</label>
+                                            <input type="text" class="form-control" id="param5" name="Param5" value="@Model?.Param5">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="param6">Nom de la Machine Virtuelle:</label>
+                                            <input type="text" class="form-control" id="param6" name="Param6" value="@Model?.Param6">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="7">Taille VM :</label>
+                                            <input type="text" class="form-control" id="param7" name="Param7" value="@Model?.Param7">
+                                        </div>
+                                                <div class="form-group">
+                                            <label for="param1">Nom Subnet :</label>
+                                            <input type="text" class="form-control" id="param8" name="Param8" value="@Model?.Param8">
+                                        </div>
+                                                <div class="form-group">
+                                            <label for="param9">Adress Prefixes :</label>
+                                            <input type="text" class="form-control" id="param9" name="Param9" value="@Model?.Param9">
+                                        </div>
+                                                <div class="form-group">
+                                            <label for="param1">Nom de machine Profil :</label>
+                                            <input type="text" class="form-control" id="param10" name="Param10" value="@Model?.Param10">
+                                        </div>
+                                                <div class="form-group">
+                                            <label for="param1">Nom Admin :</label>
+                                            <input type="text" class="form-control" id="param11" name="Param11" value="@Model?.Param11">
+                                        </div>
+                                                <div class="form-group">
+                                            <label for="param1">Mot de passe Admin :</label>
+                                            <input type="text" class="form-control" id="param12" name="Param12" value="@Model?.Param12">
+                                        </div>
+                                <button type="submit" class="btn btn-primary">Generate Script</button>
+                            </form>`;
+                    break;
+
+
+
+                case "AzureSQLDatabase":
+                             formHtml = `
+                                            <form method="post">
+                                                <div class="form-group">
+                                                <h2>Configurez <span style="color: red;">Azure SQL Database</span> en fournissant les informations nécessaires dans les champs suivants</h2>
+                                                            <div class="form-group">
+                                                        <label for="param1"> Nom Ressource Groupe :</label>
+                                                        <input type="text" class="form-control" id="param1" name="Param1" value="@Model?.Param1">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="param2">Région :</label>
+                                                        <input type="text" class="form-control" id="param2" name="Param2" value="@Model?.Param2">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="param3">Nom Azure Sql Server:</label>
+                                                        <input type="text" class="form-control" id="param3" name="Param3" value="@Model?.Param3">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="param4">Version:</label>
+                                                        <input type="text" class="form-control" id="param4" name="Param4" value="@Model?.Param4">
+                                                    </div>
+                                                    <div class="form-group">
+                                                                <label for="param5"> Login Administrateur </label>
+                                                        <input type="text" class="form-control" id="param5" name="Param5" value="@Model?.Param5">
+                                                    </div>
+                                                    <div class="form-group">
+                                                                <label for="param6"> Mot de passe Administrateur:</label>
+                                                        <input type="text" class="form-control" id="param6" name="Param6" value="@Model?.Param6">
+                                                    </div>
+                                                     <div class="form-group">
+                                                        <label for="param7">Environnement :</label>
+                                                        <input type="text" class="form-control" id="param7" name="Param7" value="@Model?.Param7">
+                                                    </div>
+                                                    <div class="form-group">
+                                                       <label for="param8">Nom Azure Storage Account :</label>
+                                                       <input type="text" class="form-control" id="param8" name="Param8" value="@Model?.Param8">
+                                                        </div>
+                                                     <div class="form-group">
+                                                        <label for="param9">Account Tier :</label>
+                                                        <input type="text" class="form-control" id="param9" name="Param9" value="@Model?.Param9">
+                                                     </div>
+                                                     <div class="form-group">
+                                                        <label for="param10">Account Replication Type :</label>
+                                                        <input type="text" class="form-control" id="param10" name="Param10" value="@Model?.Param10">
+                                                     </div>
+                                                     <div class="form-group">
+                                                        <label for="param11">Nom Azure Sql Database :</label>
+                                                        <input type="text" class="form-control" id="param11" name="Param11" value="@Model?.Param11">
+                                                     </div>
+                                                     <div class="form-group">
+                                                        <label for="param12">Environnement :</label>
+                                                        <input type="text" class="form-control" id="param12" name="Param12" value="@Model?.Param12">
+                                                     </div>
+                                                    <button type="submit" class="btn btn-primary">Generate Script</button>
+                                                </form>`; break;
+
+
+
+
+                case "AppService":
+                                formHtml = `
+                                        <form method="post">
+                                            <div class="form-group">
+                                                    <h2>Configurez <span style="color: red;">App Service</span> en fournissant les informations nécessaires dans les champs suivants</h2>
+                                                        <div class="form-group">
+                                                    <label for="param1">Nom de Ressource Groupe :</label>
+                                                    <input type="text" class="form-control" id="param1" name="Param1" value="@Model?.Param1">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="param2">Région :</label>
+                                                    <input type="text" class="form-control" id="param2" name="Param2" value="@Model?.Param2">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="param3">Name Azure App Service Plan:</label>
+                                                    <input type="text" class="form-control" id="param3" name="Param3" value="@Model?.Param3">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="param4">Kind:</label>
+                                                    <input type="text" class="form-control" id="param4" name="Param4" value="@Model?.Param4">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="param5">Nom Container Registry:</label>
+                                                    <input type="text" class="form-control" id="param5" name="Param5" value="@Model?.Param5">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="param6">Nom l'image de Conteneur':</label>
+                                                    <input type="text" class="form-control" id="param6" name="Param6" value="@Model?.Param6">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="param7">Tag :</label>
+                                                    <input type="text" class="form-control" id="param7" name="Param7" value="@Model?.Param7">
+                                                </div>
+                                                <div class="form-group">
+                                                <label for="param8">Source de l'image :</label>
+                                                    <input type="text" class="form-control" id="param8" name="Param8" value="@Model?.Param8">
+                                                </div>
+                                                <div class="form-group">
+                                                <label for="param9">Nom Application App Service:</label>
+                                                <input type="text" class="form-control" id="param9" name="Param9" value="@Model?.Param9">
+                                                 </div>
+                                                <div class="form-group">
+                                                <label for="param10">Docker File Path :</label>
+                                                <input type="text" class="form-control" id="param10" name="Param10" value="@Model?.Param10">
+                                                </div>
+                                                <div class="form-group">
+                                                <label for="param11">Network switch :</label>
+                                                <input type="text" class="form-control" id="param11" name="Param11" value="@Model?.Param11">
+                                                </div>
+                                                <div class="form-group">
+                                                <label for="param12">Website Node Extra Ports:</label>
+                                                <input type="text" class="form-control" id="param12" name="Param12" value="@Model?.Param12">
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Generate Script</button>
+                                            </form>`; break;
+
+
+
+
+                case "DNSZone":
+                    formHtml = `
+
+                             <form method="post">
+                                                    <div class="form-group">
+                                                            <h2>Configurez <span style="color: red;">App Service</span> en fournissant les informations nécessaires dans les champs suivants</h2>
+                                                                <div class="form-group">
+                                                            <label for="param1">Nom de Ressource Groupe :</label>
+                                                            <input type="text" class="form-control" id="param1" name="Param1" value="@Model?.Param1">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="param2">Région :</label>
+                                                            <input type="text" class="form-control" id="param2" name="Param2" value="@Model?.Param2">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="param3">Name DNS Zone :</label>
+                                                            <input type="text" class="form-control" id="param3" name="Param3" value="@Model?.Param3">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="param4">Environment:</label>
+                                                            <input type="text" class="form-control" id="param4" name="Param4" value="@Model?.Param4">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="param5">Cost Center:</label>
+                                                            <input type="text" class="form-control" id="param5" name="Param5" value="@Model?.Param5">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="param6">Nom DNS Record:</label>
+                                                            <input type="text" class="form-control" id="param6" name="Param6" value="@Model?.Param6">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="param7">ttl :</label>
+                                                            <input type="text" class="form-control" id="param7" name="Param7" value="@Model?.Param7">
+                                                        </div>
+                                                        <div class="form-group">
+                                                        <label for="param8">Addresse IP :</label>
+                                                            <input type="text" class="form-control" id="param8" name="Param8" value="@Model?.Param8">
+                                                        </div>
+                                                        <div class="form-group">
+                                                        <label for="param9">Nom Record MX:</label>
+                                                        <input type="text" class="form-control" id="param9" name="Param9" value="@Model?.Param9">
+                                                         </div>
+                                                        <div class="form-group">
+                                                        <label for="param10">Priority :</label>
+                                                        <input type="text" class="form-control" id="param10" name="Param10" value="@Model?.Param10">
+                                                        </div>
+                                                        <div class="form-group">
+                                                        <label for="param11">MX Record:</label>
+                                                        <input type="text" class="form-control" id="param11" name="Param11" value="@Model?.Param11">
+                                                        </div>
+                                                        <div class="form-group">
+                                                        <label for="param12">Value Dns text Record:</label>
+                                                        <input type="text" class="form-control" id="param12" name="Param12" value="@Model?.Param12">
+                                                        </div>
+                                                        <button type="submit" class="btn btn-primary">Generate Script</button>
+                                                    </form>`; break;
+                                              
+
+
+                case "AzureCosmosDB":
+                    formHtml = `
+                                                        <form method="post">
+                                                            <div class="form-group">
+                                                                    <h2>Configurez <span style="color: red;">Azure Cosmos DB</span> en fournissant les informations nécessaires dans les champs suivants</h2>
+                                                                        <div class="form-group">
+                                                                    <label for="param1">Nom de la machine virtuelle :</label>
+                                                                    <input type="text" class="form-control" id="param1" name="Param1" value="@Model?.Param1">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="param2">Région :</label>
+                                                                    <input type="text" class="form-control" id="param2" name="Param2" value="@Model?.Param2">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="param3">Network Name:</label>
+                                                                    <input type="text" class="form-control" id="param3" name="Param3" value="@Model?.Param3">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="param4">Address Space:</label>
+                                                                    <input type="text" class="form-control" id="param4" name="Param4" value="@Model?.Param4">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="param5">Network Location:</label>
+                                                                    <input type="text" class="form-control" id="param5" name="Param5" value="@Model?.Param5">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="param6">Resource group name:</label>
+                                                                    <input type="text" class="form-control" id="param6" name="Param6" value="@Model?.Param6">
+                                                                </div>
+                                                                <button type="submit" class="btn btn-primary">Generate Script</button>
+                                                            </form>`; break;
+
+
+
+
+                case "AzureKubernetesService":
+                    formHtml = `
+                                                                <form method="post">
+                                                                    <div class="form-group">
+                                                                                    <h2>Configurez <span style="color: red;">Azure Kubernetes Service</span> en fournissant les informations nécessaires dans les champs suivants</h2>
+                                                                                <div class="form-group">
+                                                                            <label for="param1">Ressource Group Name :</label>
+                                                                            <input type="text" class="form-control" id="param1" name="Param1" value="@Model?.Param1">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="param2">Région :</label>
+                                                                            <input type="text" class="form-control" id="param2" name="Param2" value="@Model?.Param2">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="param3"> Cluster Name:</label>
+                                                                            <input type="text" class="form-control" id="param3" name="Param3" value="@Model?.Param3">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="param4">Location:</label>
+                                                                            <input type="text" class="form-control" id="param4" name="Param4" value="@Model?.Param4">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="param5">Group Name ressource:</label>
+                                                                            <input type="text" class="form-control" id="param5" name="Param5" value="@Model?.Param5">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="param6">DNS prefix:</label>
+                                                                            <input type="text" class="form-control" id="param6" name="Param6" value="@Model?.Param6">
+                                                                                </div<div class="form-group">
+                                                                                    <label for="param7"> Kubernetes Version:</label>
+                                                                                    <input type="text" class="form-control" id="param7" name="Param7" value="@Model?.Param7">
+                                                                                </div>
+                                                                                         </div<div class="form-group">
+                                                                                            <label for="param8"> Admin username Linux Profile :</label>
+                                                                                            <input type="text" class="form-control" id="param8" name="Param8" value="@Model?.Param8">
+                                                                                        </div>
+                                                                                                 </div<div class="form-group">
+                                                                                            <label for="param9"> name node pool:</label>
+                                                                                            <input type="text" class="form-control" id="param9" name="Param9" value="@Model?.Param9">
+                                                                                        </div>
+                                                                                                 </div<div class="form-group">
+                                                                                            <label for="param10"> node count:</label>
+                                                                                            <input type="text" class="form-control" id="param10" name="Param10" value="@Model?.Param10">
+                                                                                        </div>
+                                                                                                 </div<div class="form-group">
+                                                                                            <label for="param11"> VM Size:</label>
+                                                                                            <input type="text" class="form-control" id="param11" name="Param11" value="@Model?.Param11">
+                                                                                        </div>
+
+                                                                                                 </div<div class="form-group">
+                                                                                                    <label for="param12"> Size Disk en GB:</label>
+                                                                                                    <input type="text" class="form-control" id="param12" name="Param12" value="@Model?.Param12">
+                                                                                                </div>
+
+                                                                        <button type="submit" class="btn btn-primary">Generate Script</button>
+                                                                    </form>`; break;
+
+
+
+                case "AzureContentDelivery Network":
+                    formHtml = `
+                                                                        <form method="post">
+                                                                            <div class="form-group">
+                                                                                       <h2>Configurez <span style="color: red;">Azure Content Delivery Network</span> en fournissant les informations nécessaires dans les champs suivants</h2>
+                                                                               <div class="form-group">
+                                                                                    <label for="param1">Nom de la machine virtuelle :</label>
+                                                                                    <input type="text" class="form-control" id="param1" name="Param1" value="@Model?.Param1">
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label for="param2">Région :</label>
+                                                                                    <input type="text" class="form-control" id="param2" name="Param2" value="@Model?.Param2">
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label for="param3">Network Name:</label>
+                                                                                    <input type="text" class="form-control" id="param3" name="Param3" value="@Model?.Param3">
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label for="param4">Address Space:</label>
+                                                                                    <input type="text" class="form-control" id="param4" name="Param4" value="@Model?.Param4">
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label for="param5">Network Location:</label>
+                                                                                    <input type="text" class="form-control" id="param5" name="Param5" value="@Model?.Param5">
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label for="param6">Resource group name:</label>
+                                                                                    <input type="text" class="form-control" id="param6" name="Param6" value="@Model?.Param6">
+                                                                                </div>
+                                                                                <button type="submit" class="btn btn-primary">Generate Script</button>
+                                                                            </form>`; break;
+
+
+
+                case "AzureActiveDirectory":
+                    formHtml = `
+                                                                                <form method="post">
+                                                                                    <div class="form-group">
+                                                                                         <h2>Configurez <span style="color: red;">Azure Active Directory Domain Service</span> en fournissant les informations nécessaires dans les champs suivants</h2>
+                                                                                        <div class="form-group">
+                                                                                            <label for="param1">Nom Ressource Group :</label>
+                                                                                            <input type="text" class="form-control" id="param1" name="Param1" value="@Model?.Param1">
+                                                                                        </div>
+                                                                                        <div class="form-group">
+                                                                                            <label for="param2">Région Ressource Group :</label>
+                                                                                            <input type="text" class="form-control" id="param2" name="Param2" value="@Model?.Param2">
+                                                                                        </div>
+                                                                                        <div class="form-group">
+                                                                                            <label for="param3">Environnement</label>
+                                                                                            <input type="text" class="form-control" id="param3" name="Param3" value="@Model?.Param3">
+                                                                                        </div>
+                                                                                        <div class="form-group">
+                                                                                            <label for="param4">Nom Réseau Virtuel:</label>
+                                                                                            <input type="text" class="form-control" id="param4" name="Param4" value="@Model?.Param4">
+                                                                                        </div>
+                                                                                        <div class="form-group">
+                                                                                                    <label for="param5">Address Space:</label>
+                                                                                            <input type="text" class="form-control" id="param5" name="Param5" value="@Model?.Param5">
+                                                                                        </div>
+                                                                                        <div class="form-group">
+                                                                                            <label for="param6">Exemple nom du domaine:</label>
+                                                                                            <input type="text" class="form-control" id="param6" name="Param6" value="@Model?.Param6">
+                                                                                        </div>
+                                                                                        <div class="form-group">
+                                                                                        <label for="param7">Nom du domaine :</label>
+                                                                                        <input type="text" class="form-control" id="param7" name="Param7" value="@Model?.Param7">
+                                                                                        </div>
+                                                                                        <div class="form-group">
+                                                                                                 <label for="param8">Domaine netbios name :</label>
+                                                                                         <input type="text" class="form-control" id="param8" name="Param8" value="@Model?.Param8">
+                                                                                        </div>
+                                                                                        <div class="form-group">
+                                                                                        <label for="param9">Domaine Fqdn :</label>
+                                                                                        <input type="text" class="form-control" id="param9" name="Param9" value="@Model?.Param9">
+                                                                                        </div>
+                                                                                        <div class="form-group">
+                                                                                        <label for="param10">Nom Admin:</label>
+                                                                                        <input type="text" class="form-control" id="param10" name="Param10" value="@Model?.Param10">
+                                                                                        </div>
+                                                                                        <div class="form-group">
+                                                                                        <label for="param11">MDP Admin :</label>
+                                                                                        <input type="text" class="form-control" id="param11" name="Param11" value="@Model?.Param11">
+                                                                                        </div>
+                                                                                        <div class="form-group">
+                                                                                        <label for="param12">Force Delete ( true/false) :</label>
+                                                                                        <input type="text" class="form-control" id="param12" name="Param12" value="@Model?.Param12">
+                                                                                        </div>
+                                                                                        <button type="submit" class="btn btn-primary">Generate Script</button>
+                                                                                    </form>`; break;
+
+
+                case "AzureAPIManagement":
+                    formHtml = `
+                                                                                        <form method="post">
+                                                                                            <div class="form-group">
+                                                                                                                       <h2>Configurez <span style="color: red;">Azure API Management</span> en fournissant les informations nécessaires dans les champs suivants</h2>
+                                                                                                        <div class="form-group">
+                                                                                                    <label for="param1">Nom de la machine virtuelle :</label>
+                                                                                                    <input type="text" class="form-control" id="param1" name="Param1" value="@Model?.Param1">
+                                                                                                </div>
+                                                                                                <div class="form-group">
+                                                                                                    <label for="param2">Région :</label>
+                                                                                                    <input type="text" class="form-control" id="param2" name="Param2" value="@Model?.Param2">
+                                                                                                </div>
+                                                                                                <div class="form-group">
+                                                                                                    <label for="param3">Network Name:</label>
+                                                                                                    <input type="text" class="form-control" id="param3" name="Param3" value="@Model?.Param3">
+                                                                                                </div>
+                                                                                                <div class="form-group">
+                                                                                                    <label for="param4">Address Space:</label>
+                                                                                                    <input type="text" class="form-control" id="param4" name="Param4" value="@Model?.Param4">
+                                                                                                </div>
+                                                                                                <div class="form-group">
+                                                                                                    <label for="param5">Network Location:</label>
+                                                                                                    <input type="text" class="form-control" id="param5" name="Param5" value="@Model?.Param5">
+                                                                                                </div>
+                                                                                                <div class="form-group">
+                                                                                                    <label for="param6">Resource group name:</label>
+                                                                                                    <input type="text" class="form-control" id="param6" name="Param6" value="@Model?.Param6">
+                                                                                                </div>
+                                                                                                <button type="submit" class="btn btn-primary">Generate Script</button>
+                                                                                            </form>`; break;
+
+
+
+
+                case "AzureFunctions":
+                    formHtml = `
+                                                                                                <form method="post">
+                                                                                                    <div class="form-group">
+                                                                                                     <h2>Configurez <span style="color: red;">Azure Functions</span> en fournissant les informations nécessaires dans les champs suivants</h2>
+                                                                                                     <div class="form-group">
+                                                                                                            <label for="param1">Nom de la machine virtuelle :</label>
+                                                                                                            <input type="text" class="form-control" id="param1" name="Param1" value="@Model?.Param1">
+                                                                                                        </div>
+                                                                                                        <div class="form-group">
+                                                                                                            <label for="param2">Région :</label>
+                                                                                                            <input type="text" class="form-control" id="param2" name="Param2" value="@Model?.Param2">
+                                                                                                        </div>
+                                                                                                        <div class="form-group">
+                                                                                                            <label for="param3">Network Name:</label>
+                                                                                                            <input type="text" class="form-control" id="param3" name="Param3" value="@Model?.Param3">
+                                                                                                        </div>
+                                                                                                        <div class="form-group">
+                                                                                                            <label for="param4">Address Space:</label>
+                                                                                                            <input type="text" class="form-control" id="param4" name="Param4" value="@Model?.Param4">
+                                                                                                        </div>
+                                                                                                        <div class="form-group">
+                                                                                                            <label for="param5">Network Location:</label>
+                                                                                                            <input type="text" class="form-control" id="param5" name="Param5" value="@Model?.Param5">
+                                                                                                        </div>
+                                                                                                        <div class="form-group">
+                                                                                                            <label for="param6">Resource group name:</label>
+                                                                                                            <input type="text" class="form-control" id="param6" name="Param6" value="@Model?.Param6">
+                                                                                                        </div>
+                                                                                                        <button type="submit" class="btn btn-primary">Generate Script</button>
+                                                                                                    </form>`; break;
+
+                case "AzureLogicApps":
+                    formHtml = `
+                                                                                                        <form method="post">
+                                                                                                            <div class="form-group">
+                                                                                                             <h2>Configurez <span style="color: red;">Azure Logic Apps</span> en fournissant les informations nécessaires dans les champs suivants</h2>
+                                                                                                                        <div class="form-group">
+                                                                                                                    <label for="param1">Nom de la machine virtuelle :</label>
+                                                                                                                    <input type="text" class="form-control" id="param1" name="Param1" value="@Model?.Param1">
+                                                                                                                </div>
+                                                                                                                <div class="form-group">
+                                                                                                                    <label for="param2">Région :</label>
+                                                                                                                    <input type="text" class="form-control" id="param2" name="Param2" value="@Model?.Param2">
+                                                                                                                </div>
+                                                                                                                <div class="form-group">
+                                                                                                                    <label for="param3">Network Name:</label>
+                                                                                                                    <input type="text" class="form-control" id="param3" name="Param3" value="@Model?.Param3">
+                                                                                                                </div>
+                                                                                                                <div class="form-group">
+                                                                                                                    <label for="param4">Address Space:</label>
+                                                                                                                    <input type="text" class="form-control" id="param4" name="Param4" value="@Model?.Param4">
+                                                                                                                </div>
+                                                                                                                <div class="form-group">
+                                                                                                                    <label for="param5">Network Location:</label>
+                                                                                                                    <input type="text" class="form-control" id="param5" name="Param5" value="@Model?.Param5">
+                                                                                                                </div>
+                                                                                                                <div class="form-group">
+                                                                                                                    <label for="param6">Resource group name:</label>
+                                                                                                                    <input type="text" class="form-control" id="param6" name="Param6" value="@Model?.Param6">
+                                                                                                                </div>
+                                                                                                                <button type="submit" class="btn btn-primary">Generate Script</button>
+                                                                                                            </form>`; break;
+
+
+                case "AzureDevOps":
+                    formHtml = `
+                                                                                                                <form method="post">
+                                                                                                                    <div class="form-group">
+                                                                                                                     <h2>Configurez <span style="color: red;">Azure DevOps</span> en fournissant les informations nécessaires dans les champs suivants</h2>
+                                                                                                                                <div class="form-group">
+                                                                                                                            <label for="param1">Nom de la machine virtuelle :</label>
+                                                                                                                            <input type="text" class="form-control" id="param1" name="Param1" value="@Model?.Param1">
+                                                                                                                        </div>
+                                                                                                                        <div class="form-group">
+                                                                                                                            <label for="param2">Région :</label>
+                                                                                                                            <input type="text" class="form-control" id="param2" name="Param2" value="@Model?.Param2">
+                                                                                                                        </div>
+                                                                                                                        <div class="form-group">
+                                                                                                                            <label for="param3">Network Name:</label>
+                                                                                                                            <input type="text" class="form-control" id="param3" name="Param3" value="@Model?.Param3">
+                                                                                                                        </div>
+                                                                                                                        <div class="form-group">
+                                                                                                                            <label for="param4">Address Space:</label>
+                                                                                                                            <input type="text" class="form-control" id="param4" name="Param4" value="@Model?.Param4">
+                                                                                                                        </div>
+                                                                                                                        <div class="form-group">
+                                                                                                                            <label for="param5">Network Location:</label>
+                                                                                                                            <input type="text" class="form-control" id="param5" name="Param5" value="@Model?.Param5">
+                                                                                                                        </div>
+                                                                                                                        <div class="form-group">
+                                                                                                                            <label for="param6">Resource group name:</label>
+                                                                                                                            <input type="text" class="form-control" id="param6" name="Param6" value="@Model?.Param6">
+                                                                                                                        </div>
+                                                                                                                        <button type="submit" class="btn btn-primary">Generate Script</button>
+                                                                                                                    </form>`; break;
+
+
+
+                default:
+                    formHtml = ""; // Si aucun composant n'est sélectionné, videz le formulaire
+                    break;
+            }
+
+            document.getElementById("componentForm").innerHTML = formHtml;
+        });
+
+    </script>
+</form>
+@if (!string.IsNullOrEmpty(ViewBag.ValidationMessage))
+{
+    <div>
+        @ViewBag.ValidationMessage
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.Script))
+{
+    <div>
+        <h3>Script Terraform généré :</h3>
+        <pre>@Html.Raw(ViewBag.Script)</pre>
+    </div>
+}
 @if (!string.IsNullOrEmpty(Model?.TerraformScript))
 {
     <hr />

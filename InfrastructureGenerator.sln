@@ -3,13 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34701.34
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfrastructureGenerator", "InfrastructureGenerator\InfrastructureGenerator.csproj", "{B8AFB058-139F-44B4-805C-7BAFF5F0A1DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfrastructureGenerator", "InfrastructureGenerator\InfrastructureGenerator.csproj", "{B8AFB058-139F-44B4-805C-7BAFF5F0A1DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfrastructureGenerator.BLL", "InfrastructureGenerator.BLL\InfrastructureGenerator.BLL.csproj", "{82E69B97-1BE1-44E0-8BBA-D6127AB30160}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfrastructureGenerator.BLL", "InfrastructureGenerator.BLL\InfrastructureGenerator.BLL.csproj", "{82E69B97-1BE1-44E0-8BBA-D6127AB30160}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfrastructureGenerator.DAL", "InfrastructureGenerator.DAL\InfrastructureGenerator.DAL.csproj", "{8E39918E-32E8-4429-880C-164538A7A46E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfrastructureGenerator.Web", "InfrastructureGenerator.Web\InfrastructureGenerator.Web.csproj", "{3BB9DC22-328F-4526-B25B-DE1CA617900D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfrastructureGenerator.DAL", "InfrastructureGenerator.DAL\InfrastructureGenerator.DAL.csproj", "{8E39918E-32E8-4429-880C-164538A7A46E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +27,6 @@ Global
 		{8E39918E-32E8-4429-880C-164538A7A46E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E39918E-32E8-4429-880C-164538A7A46E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E39918E-32E8-4429-880C-164538A7A46E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3BB9DC22-328F-4526-B25B-DE1CA617900D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3BB9DC22-328F-4526-B25B-DE1CA617900D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3BB9DC22-328F-4526-B25B-DE1CA617900D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3BB9DC22-328F-4526-B25B-DE1CA617900D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
